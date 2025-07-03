@@ -7,11 +7,20 @@ function elegir()
     let x = Math.floor( Math.random()*3  );
     return opciones[x];
 }
+function reset()
+{
+    contadorJugador = 0;
+    contadorPC = 0;
+}
+
+
 
 
 
 let contadorJugador = 0;
 let contadorPC = 0;
+
+
 
 const mensaje = document.querySelector(".victorias");
 mensaje.textContent = "Victorias : " + contadorJugador;
@@ -34,6 +43,7 @@ function usar(numero){
 }
 function ganador(numero,compu)
 {
+    
     if (numero === 1 && compu === "Tijeras"){contadorJugador++;}
     if (numero === 1 && compu === "Papel"){contadorPC++;}
 
@@ -43,8 +53,22 @@ function ganador(numero,compu)
     if (numero === 3 && compu === "Piedra"){contadorJugador++;}
     if (numero === 3 && compu === "Tijeras"){contadorPC++;}
 
+
     mensaje.textContent = "Victorias : " + contadorJugador;
     mensaje2.textContent = "Derrotas : " + contadorPC;
+    
+      if (contadorJugador === 5) {
+        alert("¡Ganaste!");
+        reset();
+        mensaje.textContent = "Victorias : 0";
+        mensaje2.textContent = "Derrotas : 0";
+    }
+    if (contadorPC === 5) {
+        alert("Perdiste :(");
+        reset();
+        mensaje.textContent = "Victorias : 0";
+        mensaje2.textContent = "Derrotas : 0";
+    }
 
 }
 
@@ -58,5 +82,8 @@ botones.forEach(boton => {
       else if (boton.id === "tres") {usar(3);}
   });
 });
+
+
+
 
 
